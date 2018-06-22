@@ -25,9 +25,9 @@ RUN apk add --no-cache \
   ttf-freefont~=20120503 \
   ttf-dejavu~=2.37
 
-COPY ./burpdl.sh /home/burp/burpdl.sh
-RUN chmod +x /home/burp/burpdl.sh
-RUN /home/burp/burpdl.sh
+COPY ./download.sh /home/burp/download.sh
+RUN chmod +x /home/burp/download.sh
+RUN /home/burp/download.sh
 
 #RUN useradd --create-home --shell /bin/sh burp
 #RUN adduser --shell /bin/sh burp
