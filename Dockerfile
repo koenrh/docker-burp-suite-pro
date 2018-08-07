@@ -9,8 +9,6 @@ ENV BURP_SUITE_PRO_CHECKSUM="8f556f27cca14fbde5781fbaea5a962fdecb9aba91d6fcb8dd5
 
 ENV HOME /home/burp
 
-# -Dawt.useSystemAAFontSettings=lcd \n\
-
 ENV JAVA_OPTS "-Dawt.useSystemAAFontSettings=gasp "\
   "-Dswing.aatext=true "\
   "-Dsun.java2d.xrender=true "\
@@ -29,11 +27,9 @@ COPY ./download.sh /home/burp/download.sh
 RUN chmod +x /home/burp/download.sh
 RUN /home/burp/download.sh
 
-#RUN useradd --create-home --shell /bin/sh burp
-#RUN adduser --shell /bin/sh burp
-RUN addgroup -S burp && adduser -S -G burp burp
+RUN addgroup -S burp && \
+  adduser -S -g burp burp
 
-#COPY burpsuite_pro_v${BURP_SUITE_PRO_VERSION}.jar /home/burp/burpsuite_pro.jar
 RUN mkdir -p .java/.userPrefs
 
 USER burp
