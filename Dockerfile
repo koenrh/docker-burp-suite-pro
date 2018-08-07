@@ -23,9 +23,10 @@ RUN apk add --no-cache \
   ttf-freefont~=20120503 \
   ttf-dejavu~=2.37
 
-COPY ./download.sh /home/burp/download.sh
-RUN chmod +x /home/burp/download.sh
-RUN /home/burp/download.sh
+COPY ./download.sh ./entrypoint.sh /home/burp/
+RUN chmod +x /home/burp/download.sh /home/burp/entrypoint.sh && \
+  /home/burp/download.sh && \
+  mv "$HOME/burpsuite_pro_v$BURP_SUITE_PRO_VERSION.jar" /home/burp/burpsuite_pro.jar
 
 RUN addgroup -S burp && \
   adduser -S -g burp burp
@@ -36,4 +37,5 @@ USER burp
 WORKDIR $HOME
 
 EXPOSE 8080
-ENTRYPOINT java $JAVA_OPTS -jar "$HOME/burpsuite_pro_v$BURP_SUITE_PRO_VERSION.jar"
+
+ENTRYPOINT ["/home/burp/entrypoint.sh", "/home/burp/burpsuite_pro.jar"]
