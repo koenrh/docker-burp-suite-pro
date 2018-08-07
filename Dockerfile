@@ -19,7 +19,7 @@ ENV JAVA_OPTS "-Dawt.useSystemAAFontSettings=gasp "\
   "-XshowSettings:vm"
 
 RUN apk add --no-cache \
-  curl~=7.60 \
+  curl~=7 \
   openssl~=1.0 \
   ca-certificates~=20171114 \
   ttf-freefont~=20120503 \
