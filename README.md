@@ -73,7 +73,7 @@ curl -x http://127.0.0.1:8080 http://example.com
 
 ## Notes
 
-1. When prompted, do not updated Burp Suite through the GUI. Pull and build and
+1. When prompted, do not updated Burp Suite through the GUI. Pull and build an
   updated image instead.
 1. Do not the delete the mapped `.java` directory on your host. It contains important
   license activation data.
