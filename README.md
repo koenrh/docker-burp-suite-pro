@@ -54,7 +54,7 @@ docker run --rm \
 
 You could make this command more easily accessible by putting it an executable,
 and make sure that it is available in your `$PATH`. Alternative, you could create
-wrapper functions `docker run` commands ([example](https://github.com/jessfraz/dotfiles/blob/master/.dockerfunc)).
+wrapper functions for your `docker run` commands ([example](https://github.com/jessfraz/dotfiles/blob/master/.dockerfunc)).
 
 ### Burp Proxy
 
