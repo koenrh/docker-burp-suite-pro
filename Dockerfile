@@ -1,4 +1,4 @@
-FROM openjdk:8u151-jre-alpine3.7@sha256:8d6f291d02454a43c312b771915c24c1abcf95324de579945a4ac86e4561ac2a
+FROM openjdk:8u151-jre-alpine3.7@sha256:795d1c079217bdcbff740874b78ddea80d5df858b3999951a33871ee61de15ce
 LABEL maintainer "Koen Rouwhorst <info@koenrouwhorst.nl>"
 
 ARG PORTSWIGGER_EMAIL_ADDRESS
