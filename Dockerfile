@@ -1,0 +1,46 @@
+FROM openjdk:8u151-jre-alpine3.7@sha256:795d1c079217bdcbff740874b78ddea80d5df858b3999951a33871ee61de15ce
+LABEL maintainer "Koen Rouwhorst <koen@privesc.com>"
+
+ARG PORTSWIGGER_EMAIL_ADDRESS
+ARG PORTSWIGGER_PASSWORD
+
+ENV BURP_SUITE_PRO_VERSION="2.0.11beta"
+ENV BURP_SUITE_PRO_CHECKSUM="bb0e3caf77ce46f24f35446a4616aa81ec56770ba9d3478d970d645a7cc9c998"
+
+ENV HOME /home/burp
+
+ENV JAVA_OPTS "-Dawt.useSystemAAFontSettings=gasp "\
+  "-Dswing.aatext=true "\
+  # sun.java2d.xrender https://docs.oracle.com/javase/8/docs/technotes/guides/2d/flags.html#xrender
+  "-Dsun.java2d.xrender=true "\
+  "-XX:+UnlockExperimentalVMOptions "\
+  "-XX:+UseCGroupMemoryLimitForHeap "\
+  "-XshowSettings:vm"
+
+RUN apk add --no-cache \
+  curl~=7 \
+  openssl~=1.0 \
+  ca-certificates~=20171114 \
+  ttf-freefont~=20120503 \
+  ttf-dejavu~=2.37
+
+COPY ./download.sh ./entrypoint.sh /home/burp/
+RUN chmod +x /home/burp/download.sh /home/burp/entrypoint.sh && \
+  /home/burp/download.sh && \
+  mv "$HOME/burpsuite_pro_v$BURP_SUITE_PRO_VERSION.jar" /home/burp/burpsuite_pro.jar
+
+RUN addgroup -S burp && \
+  adduser -S -g burp burp
+
+RUN mkdir -p .java/.userPrefs
+
+USER burp
+WORKDIR $HOME
+
+# Burp Proxy
+EXPOSE 8080
+
+# Burp REST API
+EXPOSE 1337
+
+ENTRYPOINT ["/home/burp/entrypoint.sh", "/home/burp/burpsuite_pro.jar"]
