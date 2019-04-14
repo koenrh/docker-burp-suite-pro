@@ -1,7 +1,7 @@
 #!/bin/sh
 
 email="$PORTSWIGGER_EMAIL_ADDRESS"
-customer_number="$PORTSWIGGER_CUSTOMER_NUMBER"
+password="$PORTSWIGGER_PASSWORD"
 
 name="burpsuite_pro"
 version="$BURP_SUITE_PRO_VERSION"
@@ -13,12 +13,12 @@ cookie_jar="$HOME/cookies"
 # Make initial request to get the 'request verification token' (CSRF).
 token=$(curl -s --cookie-jar "$cookie_jar" "https://portswigger.net/users" | grep -oE "[A-Z0-9_-]{128}")
 
-# Login using the username (email address) and password (customer number).
+# Login using the username (email address) and password.
 curl https://portswigger.net/users \
   -b "$cookie_jar" \
   -c "$cookie_jar" \
   -F "EmailAddress=$email" \
-  -F "Password=$customer_number" \
+  -F "Password=$password" \
   -F "__RequestVerificationToken=$token"
 
 # Download the JAR file.

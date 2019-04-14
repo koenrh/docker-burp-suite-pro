@@ -4,15 +4,14 @@ LABEL maintainer "Koen Rouwhorst <koen@privesc.com>"
 ARG PORTSWIGGER_EMAIL_ADDRESS
 ARG PORTSWIGGER_PASSWORD
 
-ENV BURP_SUITE_PRO_VERSION="2.0.11beta"
-ENV BURP_SUITE_PRO_CHECKSUM="bb0e3caf77ce46f24f35446a4616aa81ec56770ba9d3478d970d645a7cc9c998"
+ENV BURP_SUITE_PRO_VERSION="2.0.20beta"
+ENV BURP_SUITE_PRO_CHECKSUM="b466d305baea1a92f518811c1cd421c3c42e66dc64e043788676b997f68276e7"
 
 ENV HOME /home/burp
 
 ENV JAVA_OPTS "-Dawt.useSystemAAFontSettings=gasp "\
   "-Dswing.aatext=true "\
-  # sun.java2d.xrender https://docs.oracle.com/javase/8/docs/technotes/guides/2d/flags.html#xrender
-  "-Dsun.java2d.xrender=true "\
+  "-Dsun.java2d.xrender=true" \
   "-XX:+UnlockExperimentalVMOptions "\
   "-XX:+UseCGroupMemoryLimitForHeap "\
   "-XshowSettings:vm"
