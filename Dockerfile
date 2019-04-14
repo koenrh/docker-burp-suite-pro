@@ -11,8 +11,7 @@ ENV HOME /home/burp
 
 ENV JAVA_OPTS "-Dawt.useSystemAAFontSettings=gasp "\
   "-Dswing.aatext=true "\
-  # sun.java2d.xrender https://docs.oracle.com/javase/8/docs/technotes/guides/2d/flags.html#xrender
-  "-Dsun.java2d.xrender=true "\
+  "-Dsun.java2d.xrender=true" \
   "-XX:+UnlockExperimentalVMOptions "\
   "-XX:+UseCGroupMemoryLimitForHeap "\
   "-XshowSettings:vm"
