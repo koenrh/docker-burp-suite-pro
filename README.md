@@ -39,11 +39,13 @@ the PortSwigger portal.
 ## Setup
 
 1. Start the X window server by opening XQuartz (`open -a xquartz`).
-1. Expose the local XQuartz socket on TCP port 6000:
+1. Expose the local XQuartz socket on TCP port 6000 using `socat`:
 
 ```
 socat TCP-LISTEN:6000,reuseaddr,fork UNIX-CLIENT:\"$DISPLAY\"
 ```
+
+Note that you need to run this command from your host, not the XQuartz terminal.
 
 ## Usage
 
