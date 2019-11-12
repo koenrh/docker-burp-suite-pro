@@ -53,7 +53,7 @@ Note that you need to run this command from your host, not the XQuartz terminal.
 docker run --rm \
   -v "/tmp/.X11-unix:/tmp/.X11-unix" \
   -e "DISPLAY=docker.for.mac.host.internal:0" \
-  -v $HOME"/src/github.com/koenrh/burp/java:/home/burp/.java" \
+  -v "$HOME/src/github.com/koenrh/burp/java:/home/burp/.java" \
   -p 8080:8080 \
   --name burp-suite-pro
   koenrh/burp-suite-pro
