@@ -1,5 +1,5 @@
 FROM openjdk:8u151-jre-alpine3.7@sha256:6aa7da366e07ba497d00caaf6d9206167dd210a8bf54d960bee16b9d421a4f54
-LABEL maintainer "Koen Rouwhorst <koen@privesc.com>"
+LABEL maintainer="Koen Rouwhorst <koen@privesc.com>"
 
 ARG PORTSWIGGER_EMAIL_ADDRESS
 ARG PORTSWIGGER_PASSWORD
