@@ -24,6 +24,6 @@ curl https://portswigger.net/users \
 # Download the JAR file.
 curl -b "$cookie_jar" \
   -o "$file_name" \
-  "https://portswigger.net/burp/releases/download?product=pro&version=$version&type=jar" -v
+  "https://portswigger.net/burp/releases/download?product=pro&version=$version&type=Jar" -v
 
 echo "$checksum *$file_name" | sha256sum -c || exit
