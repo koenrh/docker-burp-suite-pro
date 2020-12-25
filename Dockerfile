@@ -1,11 +1,11 @@
-FROM openjdk:8u151-jre-alpine3.7@sha256:6aa7da366e07ba497d00caaf6d9206167dd210a8bf54d960bee16b9d421a4f54
+FROM openjdk:11-jre-slim@sha256:dff4e41cba98a2d186e8d1505f2762c4701e0e935c62c7ecf3d6ae8fd0bb7410
 LABEL maintainer="Koen Rouwhorst <koen@privesc.com>"
 
 ARG PORTSWIGGER_EMAIL_ADDRESS
 ARG PORTSWIGGER_PASSWORD
 
-ENV BURP_SUITE_PRO_VERSION="2020.11"
-ENV BURP_SUITE_PRO_CHECKSUM="8ea15e1a0a5b742744afb7e1ab25759081e468eee6a853d7a8546ec3b5c6096c"
+ENV BURP_SUITE_PRO_VERSION="2020.12.1"
+ENV BURP_SUITE_PRO_CHECKSUM="f8b6fd763a432adb653802138038e4e92a2839957ec8c7bf5da6ab0e5da76e7d"
 
 ENV HOME /home/burp
 
@@ -16,20 +16,16 @@ ENV JAVA_OPTS "-Dawt.useSystemAAFontSettings=gasp "\
   "-XX:+UseCGroupMemoryLimitForHeap "\
   "-XshowSettings:vm"
 
-RUN apk add --no-cache \
-  curl~=7 \
-  openssl~=1.0 \
-  ca-certificates~=20171114 \
-  ttf-freefont~=20120503 \
-  ttf-dejavu~=2.37
+RUN apt update && apt install -y curl openssl ca-certificates \
+  fontconfig ttf-dejavu libxext6 libxrender1 libxtst6
 
 COPY ./download.sh ./entrypoint.sh /home/burp/
 RUN chmod +x /home/burp/download.sh /home/burp/entrypoint.sh && \
   /home/burp/download.sh && \
   mv "$HOME/burpsuite_pro_v$BURP_SUITE_PRO_VERSION.jar" /home/burp/burpsuite_pro.jar
 
-RUN addgroup -S burp && \
-  adduser -S -g burp burp
+RUN addgroup --system burp && \
+  adduser --system --ingroup burp burp
 
 RUN mkdir -p .java/.userPrefs
 
