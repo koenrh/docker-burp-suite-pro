@@ -1,4 +1,4 @@
-FROM openjdk:11-jre-slim@sha256:3675104c1337a0e5d629c3c34e7e4a603ce137ffbc7c670682dff7c304b959bd
+FROM openjdk:11-jre-slim@sha256:f7113ee8f8f729fb513621957ce7d16784faeb576f64f89e828b35743df2efbe
 LABEL maintainer="Koen Rouwhorst <koen@privesc.com>"
 
 ARG PORTSWIGGER_EMAIL_ADDRESS
