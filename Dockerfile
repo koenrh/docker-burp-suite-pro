@@ -17,7 +17,7 @@ ENV JAVA_OPTS "-Dawt.useSystemAAFontSettings=gasp "\
   "-XshowSettings:vm"
 
 RUN apt update && apt install -y curl openssl ca-certificates \
-  fontconfig ttf-dejavu libxext6 libxrender1 libxtst6
+  fontconfig libxext6 libxrender1 libxtst6
 
 COPY ./download.sh ./entrypoint.sh /home/burp/
 RUN chmod +x /home/burp/download.sh /home/burp/entrypoint.sh && \
